@@ -36,73 +36,6 @@
     <!-- /.content -->
   </div>
 
-
-
-{{-- ADD MODAL  --}}
- <div class="modal fade" id="modal-lg-add" wire:ignore.self data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">
-            <p> Add Grade </p>
-        </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-         <div class="form-group row">
-            <label for="add_fname" class="col-sm-2 col-form-label">Grade Level</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="grade_add" name="fname" placeholder="Grade Level" required>
-              <input type="hidden" name="" id="grade_id">
-            </div>
-          </div>
-
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-primary" id="add" onclick="insertUser()">Save changes</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-
-
-
-{{-- EDIT MODAL  --}}
- <div class="modal fade" id="modal-lg-edit" wire:ignore.self data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">
-            <p> Edit Grade </p>
-        </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-         <div class="form-group row">
-            <label for="add_fname" class="col-sm-2 col-form-label">Grade Level</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="grade_edit" name="grade_edit" placeholder="Grade Level" required>
-            </div>
-          </div>
-
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-primary" id="edit" onclick="updateData()">Save changes</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
 @endsection
 
 
@@ -159,15 +92,12 @@
 
 function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
-  console.log(qrCodeMessage);
+ alert(qrCodeMessage);
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner(
   "reader", { fps: 10, qrbox: 250 });
 html5QrcodeScanner.render(onScanSuccess);
-
-
-
 
 
   </script>
