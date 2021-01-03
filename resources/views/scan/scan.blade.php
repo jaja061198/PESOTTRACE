@@ -32,6 +32,8 @@
     <!-- Main content -->
     <div class="content">
       <div style="width: 500px" id="reader"></div>
+
+      <input type="text" name="" id="generator_id">
     </div>
     <!-- /.content -->
   </div>
@@ -92,7 +94,8 @@
 
 function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
- alert(qrCodeMessage);
+ // alert(qrCodeMessage);
+ document.getElementById('generator_id').value = qrCodeMessage;
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner(
