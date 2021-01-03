@@ -97,7 +97,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>PESO</b>TRACE</a>
+    <a href="#"><b>PASO</b>TRACE</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
