@@ -124,6 +124,20 @@
             </div>
           </div>
 
+
+         <div class="form-group row">
+            <label for="add_fname" class="col-sm-2 col-form-label">Advisor</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="advisor_add">
+                <option value="" selected disabled>Select Grade</option>
+                @foreach ($advisors as $key => $value)
+                  <option value="{{ $value['id'] }}">{{ $value['f_name'] }} {{ $value['m_name'] }} {{ $value['l_name'] }}</option>
+                @endforeach
+              </select>
+              <input type="hidden" name="" id="advisor_id">
+            </div>
+          </div>
+
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-primary" id="add" onclick="insertUser()">Save changes</button>
@@ -167,6 +181,18 @@
             <label for="add_lname" class="col-sm-2 col-form-label">Section</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="section_edit" name="lname" placeholder="Section" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="add_fname" class="col-sm-2 col-form-label">Advisor</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="advisor_edit">
+                <option value="" selected disabled>Select Advisor</option>
+                @foreach ($advisors as $key => $value)
+                  <option value="{{ $value['id'] }}">{{ $value['f_name'] }} {{ $value['m_name'] }} {{ $value['l_name'] }}</option>
+                @endforeach
+              </select>
             </div>
           </div>
 
@@ -251,6 +277,7 @@
 
       let grade = document.getElementById('grade_add').value;
       let section = document.getElementById('section_add').value;
+      let advisor = document.getElementById('advisor_add').value;
       if(grade == '' || section == '')
       {
         Toast.fire({
@@ -265,7 +292,7 @@
           type: "get",
           url:"{{ route('section.insert') }}",
           cache:false,
-          data:{ grade: grade,section : section },
+          data:{ grade: grade,section : section ,advisor : advisor},
           success:function(data)
           {
 
@@ -301,6 +328,7 @@
             document.getElementById('section_edit').value = data.section;
             document.getElementById('grade_edit').value = data.grade_level;
             document.getElementById('grade_id').value = data.section_id;
+            document.getElementById('advisor_edit').value = data.advisor;
           }
       });
 
@@ -313,6 +341,7 @@
         let grade_level = document.getElementById('grade_edit').value;
         let grade_id = document.getElementById('grade_id').value;
         let section = document.getElementById('section_edit').value;
+        let advisor = document.getElementById('advisor_edit').value;
         if(grade_level == '' || section == '' )
         {
           Toast.fire({
@@ -327,7 +356,7 @@
             type: "get",
             url:"{{ route('section.update') }}",
             cache:false,
-            data:{ grade_level: grade_level,grade_id: grade_id,section : section },
+            data:{ grade_level: grade_level,grade_id: grade_id,section : section,advisor: advisor },
             success:function(data)
             {
 

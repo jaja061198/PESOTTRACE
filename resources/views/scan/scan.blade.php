@@ -33,7 +33,13 @@
     <div class="content">
       <div style="width: 500px" id="reader"></div>
 
-      <input type="text" name="" id="generator_id">
+      <div class="form-group">
+      <input type="text" class="form-control" name="" id="generator_id" placeholder="Unique Key" readonly>
+
+      <input type="text" class="form-control" name="" id="generator_id" placeholder="Full Name" readonly> 
+
+      <button type="button" class="btn btn-success ">Mark as Present</button>
+      </div>
     </div>
     <!-- /.content -->
   </div>

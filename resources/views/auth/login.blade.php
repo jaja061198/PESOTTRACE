@@ -139,9 +139,9 @@
         </div>
       {{ Form::close() }}
 
-   {{--    <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p> --}}
+      <p class="mb-1">
+        <a href="{{ route('student.qr.index') }}">Are you a student ? please click here.</a>
+      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

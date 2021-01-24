@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/studentQR', 'StudentController@studentQR')->name('student.qr.index');
+
+Route::post('/studentQRGenerate', 'StudentController@studentQRGenerate')->name('student.qr.generate');
+
 Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -60,6 +64,21 @@ Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/section/delete', 'SectionController@delete')->name('section.delete');
 
+
+	//STUDENT
+	
+
+	Route::get('/student', 'StudentController@index')->name('student.index');
+
+	Route::get('/student/insert', 'StudentController@create')->name('student.insert');
+
+	Route::post('/student/insert', 'StudentController@store')->name('student.store');
+
+	Route::get('/student/getdetail', 'StudentController@getDetail')->name('student.edit');
+
+	Route::get('/student/update', 'StudentController@update')->name('student.update');
+
+	Route::get('/student/delete', 'StudentController@delete')->name('student.delete');
 
 
 	//scan

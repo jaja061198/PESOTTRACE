@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Section as SectionModel;
 use App\GradeModel as GradeModel;
+use App\User as UserModel;
 class SectionController extends Controller
 {
     /**
@@ -27,6 +28,7 @@ class SectionController extends Controller
     {
     
         return view('section.section')
+        ->with('advisors',UserModel::where('user_level',1)->get())
         ->with('grades',GradeModel::all())
         ->with('sections',SectionModel::all());
     }
@@ -56,6 +58,7 @@ class SectionController extends Controller
 
         return response()->json([
             'grade_level' => $getDetails->grade_level,
+            'advisor' => $getDetails->advisor,
             'section' => $getDetails->section,
             'section_id' => $request->section_id,
         ]);
@@ -71,6 +74,7 @@ class SectionController extends Controller
         $create  =[
             'grade_level' => $request->grade_level,
             'section' => $request->section,
+            'advisor' => $request->advisor,
         ];
         // return $create;
         // return $create;
