@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Section as SectionModel;
 
 class GradeModel extends Model
 {
@@ -12,4 +13,10 @@ class GradeModel extends Model
     protected $fillable = [
          'grade_level','status','id'
     ];
+
+
+    public function getSections()
+    {
+    	return $this->hasMany(new SectionModel, 'id','grade_level');
+    }
 }

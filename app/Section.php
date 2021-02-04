@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\GradeModel as GradeModel;
+use App\Student as StudentModel;
 
 class Section extends Model
 {
@@ -18,5 +19,10 @@ class Section extends Model
     public function getGrade()
     {
     	return $this->belongsTo(new GradeModel, 'grade_level','id');
+    }
+
+    public function getStudents()
+    {
+        return $this->hasMany(new StudentModel, 'id','id');
     }
 }

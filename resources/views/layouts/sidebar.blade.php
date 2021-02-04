@@ -59,7 +59,7 @@
             <a href="#" class="nav-link {{ (Route::current()->getName() == 'clients.index' ? 'active' : '') }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                My Sections
+                My Classes
               </p>
             </a>
           </li>
@@ -132,6 +132,15 @@
               <i class="nav-icon fas fa-wrench"></i>
               <p>
                 Students
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('grade.index') }}" class="nav-link {{ (Route::current()->getName() == 'grade.index' ? 'active' : '') }}">
+              <i class="nav-icon fas fa-wrench"></i>
+              <p>
+                Class Setup
               </p>
             </a>
           </li>

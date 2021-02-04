@@ -24,6 +24,7 @@ class GradeController extends Controller
      */
     public function index()
     {
+        // return GradeModel::all();
         return view('grade.grade')
         ->with('grades',GradeModel::all());
     }
