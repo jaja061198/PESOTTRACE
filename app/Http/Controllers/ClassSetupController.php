@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassSetup;
+use App\GradeModel;
+use App\Section;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class StudentController extends Controller
+class ClassSetupController extends Controller
 {
-    /**
+  /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {;
-        return view('students.student')
-        ->with('students',Student::all());
+        return view('class_setup.class')
+        ->with('classSetup',ClassSetup::all());
     }
 
 
     public function studentQR()
     {
-        // $test = Student::first();
+        // $test = ClassSetup::first();
         // return QrCode::size(500)->generate($test->qr_image);
         return view('layouts.studentQR');
     }
@@ -35,7 +38,11 @@ class StudentController extends Controller
     public function create()
     {
         //
-        return view('students.studentinsert');
+        return view('class_setup.classinsert')
+        ->with('section',Section::get())
+        ->with('student',Student::get())
+        ->with('grade',GradeModel::get())
+        ->with('user',User::where('user_level',1)->get());
     }
 
     /**
@@ -64,9 +71,9 @@ class StudentController extends Controller
             'qr_image' => $uniqueID,
         ];
 
-        Student::insert($createStudent);
+        ClassSetup::insert($createStudent);
 
-        return redirect()->route('student.index');
+        return redirect()->route('class.setup.index');
     }
 
     /**
@@ -92,8 +99,8 @@ class StudentController extends Controller
         //
         // return $id;
 
-        return view('students.studentEdit')
-        ->with('info',Student::where('id',$id)->first());
+        return view('class_setup.studentEdit')
+        ->with('info',ClassSetup::where('id',$id)->first());
     }
 
     /**
@@ -115,9 +122,9 @@ class StudentController extends Controller
             // 'student_id' => $request->student_id,
         ];
 
-        Student::where('id',$request->student_id)->update($createStudent);
+        ClassSetup::where('id',$request->student_id)->update($createStudent);
 
-        return redirect()->route('student.index');
+        return redirect()->route('class.setup.index');
     }
 
     /**
@@ -133,7 +140,7 @@ class StudentController extends Controller
 
     function studentQRGenerate(Request $request)
     {
-        $details = Student::where('qr_image',$request->user_id)->first();
+        $details = ClassSetup::where('qr_image',$request->user_id)->first();
 
         if ($details != null) {
              return view('layouts.studentQRDetails')
@@ -149,7 +156,7 @@ class StudentController extends Controller
         // return $request->all();
         //Validate usernane
         // return $create;
-        Student::where('id',$request->user_id)->delete();
+        ClassSetup::where('id',$request->user_id)->delete();
 
         return response()->json(['status' => '1']);
         // return back();

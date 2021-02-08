@@ -137,7 +137,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('grade.index') }}" class="nav-link {{ (Route::current()->getName() == 'grade.index' ? 'active' : '') }}">
+            <a href="{{ route('class.setup.index') }}" class="nav-link {{ (Route::current()->getName() == 'class.setup.index' ? 'active' : '') }}">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
                 Class Setup

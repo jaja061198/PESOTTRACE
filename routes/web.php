@@ -74,11 +74,29 @@ Route::group(['middleware' => 'auth'] , function() {
 
 	Route::post('/student/insert', 'StudentController@store')->name('student.store');
 
-	Route::get('/student/getdetail', 'StudentController@getDetail')->name('student.edit');
+	Route::get('/student/getdetail/{id}', 'StudentController@getDetail')->name('student.edit');
 
-	Route::get('/student/update', 'StudentController@update')->name('student.update');
+	Route::post('/student/update', 'StudentController@update')->name('student.update');
 
 	Route::get('/student/delete', 'StudentController@delete')->name('student.delete');
+
+
+
+	//STUDENT
+	
+
+	Route::get('/classsetup', 'ClassSetupController@index')->name('class.setup.index');
+
+	Route::get('/classsetup/insert', 'ClassSetupController@create')->name('class.setup.insert');
+
+	Route::post('/classsetup/insert', 'ClassSetupController@store')->name('class.setup.store');
+
+	Route::get('/classsetup/getdetail/{id}', 'ClassSetupController@getDetail')->name('class.setup.edit');
+
+	Route::post('/classsetup/update', 'ClassSetupController@update')->name('class.setup.update');
+
+	Route::get('/classsetup/delete', 'ClassSetupController@delete')->name('class.setup.delete');
+
 
 
 	//scan

@@ -15,12 +15,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Students</h1>
+            <h1 class="m-0 text-dark">Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Masterfile Setup</li>
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Student List</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Class List</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,7 +33,7 @@
       <div class="container-fluid">
         <div class="row">
       <div class="col-lg=12">
-        <a href="{{ route('student.insert') }}" class="btn btn-block btn-success btn-sm"><i class="fa fa-plus"></i> Add Students </a>
+        <a href="{{ route('class.setup.insert') }}" class="btn btn-block btn-success btn-sm"><i class="fa fa-plus"></i> Add Class </a>
       </div>
 
         <div class="card col-lg-12" style="margin-top: 20px;">
@@ -54,16 +54,17 @@
             <table class="table table-hover text-nowrap table-bordered" id="userstbl">
               <thead>
                 <tr>
-                  <th style="width: 1%;">ID</th>
                   {{-- <th>Student ID</th> --}}
-                  <th>Full Name</th>
-                  <th>Gender</th>
-                  <th>Unique ID</th>
+                  <th>Grade</th>
+                  <th>Section</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Adviser</th>
                <th style="width: 10%;">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($students as $key => $value)
+                @foreach($classSetup as $key => $value)
                 <tr>
                   <input type="hidden" id="field_id{{ $key+1 }}" value="{{ $value['id'] }}">
                   <td>{{ $key + 1 }}</td>
