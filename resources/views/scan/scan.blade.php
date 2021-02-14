@@ -10,6 +10,8 @@
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
+
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -31,14 +33,55 @@
 
     <!-- Main content -->
     <div class="content">
+
+      @if(Session::has('failed'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Failed!</strong> Student not found or student already timed in for the subject.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @endif
+
+      @if(Session::has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Attendance successfully recorded.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @endif
+
       <div style="width: 500px;" id="reader"></div>
 
-      <div class="form-group">
-      <input type="text" class="form-control" name="" id="generator_id" placeholder="Unique Key" readonly>
+      <form method="post" action="{{ route('scan.insert') }}">
+                @csrf
+      <div class="row">
 
-      <input type="text" class="form-control" name="" id="generator_id" placeholder="Full Name" readonly> 
+        <div class="col-lg-6">
+           <label for="exampleInputEmail1"><font style="color:red;">* </font>Class</label>
+           <select class="form-control" id="class" name="class" required>
+              <option value="" selected disabled>Select Class</option>
+              @foreach ($classes as $element)
+                <option value="{{ $element['id'] }}">{{ $element['getGrade']->grade_level }} - {{ $element['getSection']->section }} - {{ $element['subject'] }} - {{ $element['time_start'] }} - {{ $element['time_end'] }}</option>
+              @endforeach
+            </select>
+        </div>
 
-      <button type="button" class="btn btn-success ">Mark as Present</button>
+        <div class="form-group">
+           <label for="exampleInputEmail1"><font style="color:red;">*</font>Unique ID</label>
+          <input type="text" class="form-control" placeholder="Enter ID" name="student_id" id="generator_id" readonly required>
+        </div>
+
+        {{-- <div class="form-group">
+           <label for="exampleInputEmail1"><font style="color:red;">*</font>Full Name</label>
+          <input type="text" class="form-control" placeholder="Enter Name" name="full_name" id="full_name" readonly>
+        </div> --}}
+        <div class="form-group">
+          <button type="submit" class="btn btn-success ">Mark as Present</button>
+        </div>
+      </div>
+    </form>
       </div>
     </div>
     <!-- /.content -->
@@ -101,12 +144,66 @@
 function onScanSuccess(qrCodeMessage) {
   // handle on success condition with the decoded message
  // alert(qrCodeMessage);
+ let classes =  document.getElementById('class').value;
+
+ if(classes == ''){
+   Toast.fire({
+      icon: 'warning',
+      title: 'Please select class first.'
+    })
+
+   return false;
+ }
  document.getElementById('generator_id').value = qrCodeMessage;
+
+ if(document.getElementById('generator_id').value == ''){
+   Toast.fire({
+      icon: 'warning',
+      title: 'Invalid QR.'
+    })
+
+   return false;
+ }
+ seearchStudent(qrCodeMessage,classes);
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner(
   "reader", { fps: 10, qrbox: 250 });
 html5QrcodeScanner.render(onScanSuccess);
+
+
+function seearchStudent(student_id,clases){
+  $.ajax({
+        type: "get",
+        url:"{{ route('scan.search.student') }}",
+        cache:false,
+        data:{ student_id: student_id , clases : clases },
+        success:function(data)
+        {
+            // location.reload();
+            if(data == 1)
+            {
+
+               Toast.fire({
+                icon: 'success',
+                title: 'Student Found please click mark as present to proceed.'
+              })
+            }
+
+            else
+
+            {
+              Toast.fire({
+                icon: 'warning',
+                title: 'Student Not found on this class.'
+              })
+
+               document.getElementById('generator_id').value = '';
+            }
+        }
+    });
+}
+
 
 
   </script>

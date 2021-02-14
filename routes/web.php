@@ -99,18 +99,23 @@ Route::group(['middleware' => 'auth'] , function() {
 
 
 
+	//CLASS
+	
+
+	Route::get('/myclasssetup', 'MyClassSetupController@index')->name('my.class.setup.index');
+
+
+	Route::get('/myclasssetup/getdetail/{id}', 'MyClassSetupController@getDetail')->name('my.class.setup.edit');
+
+
 	//scan
 	
 
 	Route::get('/scan', 'ScanController@index')->name('scan.index');
 
-	Route::get('/scan/insert', 'ScanController@insert')->name('scan.insert');
+	Route::get('/scan/searchstudent', 'ScanController@searchstudent')->name('scan.search.student');
 
-	Route::get('/scan/getdetail', 'ScanController@getDetail')->name('scan.edit');
-
-	Route::get('/scan/update', 'ScanController@update')->name('scan.update');
-
-	Route::get('/scan/delete', 'ScanController@delete')->name('scan.delete');
+	Route::post('/scan/timein', 'ScanController@timeIn')->name('scan.insert');
 
 
 	//POPULATE CLASSES

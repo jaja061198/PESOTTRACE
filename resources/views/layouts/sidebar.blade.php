@@ -56,7 +56,7 @@
           </li>
           @if(Auth::user()->user_level == '0' || Auth::user()->user_level == '1') 
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (Route::current()->getName() == 'clients.index' ? 'active' : '') }}">
+            <a href="{{ route('my.class.setup.index') }}" class="nav-link {{ (Route::current()->getName() == 'my.class.setup.index' ? 'active' : '') }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 My Classes
@@ -68,7 +68,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-history"></i>
               <p>
-                Scan Logs
+                Generate Attendance
               </p>
             </a>
           </li>
@@ -82,7 +82,7 @@
             </a>
           </li>
 
-          <li class="nav-header">Reports</li>
+          {{-- <li class="nav-header">Reports</li>
 
           <li class="nav-item">
              <a href="#" class="nav-link">
@@ -91,7 +91,7 @@
                 Scan Report
               </p>
             </a>
-          </li>
+          </li> --}}
 
           @endif
           @if(Auth::user()->user_level == '0')
@@ -158,14 +158,14 @@
           @endif
           <li class="nav-header">Account Manager</li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 My Profile
               </p>
             </a>
-          </li>
+          </li> --}}
 
           <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();

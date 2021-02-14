@@ -27,7 +27,10 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+        @if(Auth::user()->user_level == '0')
         <div class="row">
+
+          
               <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
@@ -78,7 +81,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{ $student_count }}</h3>
 
                     <p>Students</p>
                   </div>
@@ -91,7 +94,7 @@
 
               <!-- ./col -->
             </div>
-
+            @endif
 
 
             <div class="row">
@@ -99,14 +102,14 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>{{ $teacher_count }}</h3>
+                    <h3>{{ $myClass }}</h3>
 
                     <p>My Advisories</p>
                   </div>
                   <div class="icon">
                     <i class="ion ion-bag"></i>
                   </div>
-                  <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                  <a href="{{ route('my.class.setup.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
               <!-- ./col -->
