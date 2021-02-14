@@ -38,7 +38,7 @@ class ClassSetupController extends Controller
     public function create()
     {
         //
-        return view('class_setup.classinsert')
+        return view('class_setup.classInsert')
         ->with('section',Section::get())
         ->with('student',Student::get())
         ->with('grade',GradeModel::get())
