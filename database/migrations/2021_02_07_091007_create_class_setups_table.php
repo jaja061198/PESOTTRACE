@@ -20,6 +20,9 @@ class CreateClassSetupsTable extends Migration
             $table->string('subject',250)->nullable();
             $table->string('status',250)->nullable();
             $table->string('adviser',250)->nullable();
+            $table->time('time_start')->nullable();
+            $table->time('time_end')->nullable();
+
         });
     }
 

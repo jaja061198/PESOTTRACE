@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'] , function() {
 
 
 
-	//STUDENT
+	//CLASS
 	
 
 	Route::get('/classsetup', 'ClassSetupController@index')->name('class.setup.index');
@@ -112,5 +112,20 @@ Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/scan/delete', 'ScanController@delete')->name('scan.delete');
 
+
+	//POPULATE CLASSES
+	
+
+	Route::get('/populateclass', 'PopulateClassController@index')->name('populate.class.setup.index');
+
+	Route::get('/populateclass/insert', 'PopulateClassController@create')->name('populate.class.setup.insert');
+
+	Route::post('/populateclass/insert', 'PopulateClassController@store')->name('populate.class.setup.store');
+
+	Route::get('/populateclass/getdetail/{id}', 'PopulateClassController@getDetail')->name('populate.class.setup.edit');
+
+	Route::post('/populateclass/update', 'PopulateClassController@update')->name('populate.class.setup.update');
+
+	Route::get('/populateclass/delete', 'PopulateClassController@delete')->name('populate.class.setup.delete');
 
 });

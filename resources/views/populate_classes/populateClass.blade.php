@@ -15,12 +15,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Students</h1>
+            <h1 class="m-0 text-dark">Populate Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Masterfile Setup</li>
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Student List</a></li>
+              <li class="breadcrumb-item">Application Manager</li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Populate Class</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,13 +33,13 @@
       <div class="container-fluid">
         <div class="row">
       <div class="col-lg=12">
-        <a href="{{ route('student.insert') }}" class="btn btn-block btn-success btn-sm"><i class="fa fa-plus"></i> Add Students </a>
+        
       </div>
 
         <div class="card col-lg-12" style="margin-top: 20px;">
 
       <div class="card-header">
-        <h3 class="card-title">Section List <div wire:target="searchKey,render" wire:loading="">
+        <h3 class="card-title">Class List <div wire:target="searchKey,render" wire:loading="">
               <div class="la-ball-scale-pulse la-dark la-sm">
                 <div></div>
               </div>
@@ -54,26 +54,28 @@
             <table class="table table-hover text-nowrap table-bordered" id="userstbl">
               <thead>
                 <tr>
-                  <th style="width: 1%;">ID</th>
                   {{-- <th>Student ID</th> --}}
-                  <th>Full Name</th>
-                  <th>Gender</th>
-                  <th>Unique ID</th>
+                  <th>Grade</th>
+                  <th>Section</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Adviser</th>
+                  <th>Available Seats</th>
                <th style="width: 10%;">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($students as $key => $value)
+                @foreach($classSetup as $key => $value)
                 <tr>
                   <input type="hidden" id="field_id{{ $key+1 }}" value="{{ $value['id'] }}">
-                  <td>{{ $key + 1 }}</td>
-                  <td>{{ $value['f_name'] }} {{ $value['m_name'] }} {{ $value['l_name'] }}</td>
-                  <td>{{ ($value['gender'] == 'M' ? 'Male' : 'Female') }}</td>
-                  <td>{{ $value['qr_image'] }}</td>
+                  <td>{{ $value['getGrade']->grade_level }}</td>
+                  <td>{{ $value['getSection']->section }}</td>
+                  <td>{{ $value['status'] }}</td>
+                  <td>{{ $value['subject'] }}</td>
+                  <td>{{ $value['getAdviser']->f_name }} {{ $value['getAdviser']->m_name }} {{ $value['getAdviser']->l_name }}</td>
+                  <td>{{ $value['capacity'] - sizeOf($value['getStudents']) }}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary" id="field_btn{{ $key+1 }}" style="color:white;" href="{{ route('student.edit',['id' => $value['id']]) }}"><i class="fa fa-edit"></i></a>
-                    &nbsp;
-                    <button type="button" class="btn btn-sm btn-danger" style="border-radius: 50%;"  id="field_btn_del{{ $key+1 }}"  onclick="deleteData(this.id)" @if(sizeOf($value['getClasses']) > 0) disabled @endif><i class="fa fa-trash"></i></button> 
+                    <a class="btn btn-sm btn-primary" id="field_btn{{ $key+1 }}" style="color:white;" href="{{ route('populate.class.setup.edit',['id' => $value['id']]) }}"><i class="fa fa-plus"></i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -121,7 +123,7 @@
 
       $.ajax({
           type: "get",
-          url:"{{ route('student.delete') }}",
+          url:"{{ route('class.setup.delete') }}",
           cache:false,
           data:{ user_id: user_id },
           success:function(data)

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\ClassSetup;
+use App\ClassSetupDetail;
 use App\GradeModel;
 use App\Section;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 
-class ClassSetupController extends Controller
+class PopulateClassController extends Controller
 {
   /**
      * Display a listing of the resource.
@@ -18,16 +19,8 @@ class ClassSetupController extends Controller
      */
     public function index()
     {;
-        return view('class_setup.class')
+        return view('populate_classes.populateClass')
         ->with('classSetup',ClassSetup::all());
-    }
-
-
-    public function studentQR()
-    {
-        // $test = ClassSetup::first();
-        // return QrCode::size(500)->generate($test->qr_image);
-        return view('layouts.studentQR');
     }
 
     /**
@@ -92,7 +85,7 @@ class ClassSetupController extends Controller
         //
         // return $id;
 
-        return view('class_setup.classEdit')
+        return view('populate_classes.classEdit')
         ->with('section',Section::get())
         ->with('student',Student::get())
         ->with('grade',GradeModel::get())
@@ -110,20 +103,22 @@ class ClassSetupController extends Controller
     public function update(Request $request)
     {
 
-        $createClass = [
-            'grade' => $request->grade,
-            'section' => $request->section,
-            'subject' => $request->subject,
-            'adviser' => $request->adviser,
-            'time_start' => $request->time_start,
-            'status' => 1,
-            'time_end' => $request->time_end,
-            'capacity' => $request->capacity
-        ];
+        $student = $request->student_add;
 
-        ClassSetup::where('id',$request->class_id)->update($createClass);
+        foreach ($student as $key => $value) {
+           $row = [
+               'class_id' => $request->class_id,
+               'student_id' => $student[$key],
+               'status' => '1'
+           ];
 
-        return redirect()->route('class.setup.index');
+           ClassSetupDetail::insert($row);
+           
+        }
+
+        // ClassSetup::where('id',$request->class_id)->update($createClass);
+
+        return redirect()->route('populate.class.setup.index');
     }
 
     /**

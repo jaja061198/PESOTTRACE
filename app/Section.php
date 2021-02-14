@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\GradeModel as GradeModel;
 use App\Student as StudentModel;
 
+
 class Section extends Model
 {
     //
@@ -25,4 +26,6 @@ class Section extends Model
     {
         return $this->hasMany(new StudentModel, 'id','id');
     }
+
+    
 }

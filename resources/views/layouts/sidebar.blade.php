@@ -106,6 +106,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{ route('populate.class.setup.index') }}" class="nav-link {{ (Route::current()->getName() == 'populate.class.setup.index' ? 'active' : '') }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Populate Classes
+              </p>
+            </a>
+          </li>
+
 
           <li class="nav-header">Masterfile Setup</li>
 

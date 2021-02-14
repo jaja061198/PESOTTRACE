@@ -67,12 +67,13 @@
                 @foreach($classSetup as $key => $value)
                 <tr>
                   <input type="hidden" id="field_id{{ $key+1 }}" value="{{ $value['id'] }}">
-                  <td>{{ $key + 1 }}</td>
-                  <td>{{ $value['f_name'] }} {{ $value['m_name'] }} {{ $value['l_name'] }}</td>
-                  <td>{{ ($value['gender'] == 'M' ? 'Male' : 'Female') }}</td>
-                  <td>{{ $value['qr_image'] }}</td>
+                  <td>{{ $value['getGrade']->grade_level }}</td>
+                  <td>{{ $value['getSection']->section }}</td>
+                  <td>{{ $value['status'] }}</td>
+                  <td>{{ $value['subject'] }}</td>
+                  <td>{{ $value['getAdviser']->f_name }} {{ $value['getAdviser']->m_name }} {{ $value['getAdviser']->l_name }}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary" id="field_btn{{ $key+1 }}" style="color:white;" href="{{ route('student.edit',['id' => $value['id']]) }}"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-sm btn-primary" id="field_btn{{ $key+1 }}" style="color:white;" href="{{ route('class.setup.edit',['id' => $value['id']]) }}"><i class="fa fa-edit"></i></a>
                     &nbsp;
                     <button type="button" class="btn btn-sm btn-danger" style="border-radius: 50%;"  id="field_btn_del{{ $key+1 }}"  onclick="deleteData(this.id)"><i class="fa fa-trash"></i></button> 
                   </td>
@@ -122,7 +123,7 @@
 
       $.ajax({
           type: "get",
-          url:"{{ route('student.delete') }}",
+          url:"{{ route('class.setup.delete') }}",
           cache:false,
           data:{ user_id: user_id },
           success:function(data)

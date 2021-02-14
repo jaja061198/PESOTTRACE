@@ -15,6 +15,7 @@ class CreateClassSetupDetailsTable extends Migration
     {
         Schema::create('class_setup_details', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('class_id',250)->nullable();
             $table->string('student_id',250)->nullable();
             $table->string('status',250)->nullable();
         });
