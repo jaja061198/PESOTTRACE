@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\GradeModel as GradeModel;
 use App\Student as StudentModel;
-
+use App\ClassSetup as ClassSetupDetailModel;
 
 class Section extends Model
 {
@@ -24,7 +24,7 @@ class Section extends Model
 
     public function getStudents()
     {
-        return $this->hasMany(new StudentModel, 'id','id');
+        return $this->hasMany(new ClassSetupDetailModel, 'section','id');
     }
 
     

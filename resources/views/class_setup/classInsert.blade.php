@@ -118,26 +118,6 @@
                   </div>
 
 
-                  {{-- <div class="form-group">
-                    <table class="table table-bordered table-striped">
-                      <tr>
-                        <th>Student ID</th>
-                        <th>Full Name</th>
-                        <th>Gender</th>
-                      </tr>
-
-                      <tbody id="studentTbl">
-                        
-                      </tbody>
-
-                      <tr>
-                        <td colspan="100%" align="right">
-                          <button type="button" class="btn btn-x btn-success" ><i class="fa fa-plus"></i> Add</button>
-                        </td>
-                      </tr>
-                    </table>
-                  </div> --}}
-
                 </div>
                 <!-- /.card-body -->
 

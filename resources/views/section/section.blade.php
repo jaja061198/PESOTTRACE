@@ -70,7 +70,7 @@
                   <td>
                     <button type="button" class="btn btn-sm btn-primary" id="field_btn{{ $key+1 }}"  onclick="showEditModal(this.id)"><i class="fa fa-edit"></i></button>
                     &nbsp;
-                    <button type="button" class="btn btn-sm btn-danger" style="border-radius: 50%;"  id="field_btn_del{{ $key+1 }}"  onclick="deleteData(this.id)"><i class="fa fa-trash"></i></button> 
+                    <button type="button" class="btn btn-sm btn-danger" style="border-radius: 50%;"  id="field_btn_del{{ $key+1 }}"  onclick="deleteData(this.id)" @if(sizeOf($value['getStudents']) > 0) disabled @endif><i class="fa fa-trash"></i></button> 
                   </td>
                 </tr>
                 @endforeach

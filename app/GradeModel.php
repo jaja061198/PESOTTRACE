@@ -17,6 +17,6 @@ class GradeModel extends Model
 
     public function getSections()
     {
-    	return $this->hasMany(new SectionModel, 'id','grade_level');
+    	return $this->hasMany(new SectionModel, 'grade_level','id');
     }
 }
