@@ -31,7 +31,7 @@
 
     <!-- Main content -->
     <div class="content">
-      <div style="width: 500px" id="reader"></div>
+      <div style="width: 200px;height: 200px;" id="reader"></div>
 
       <div class="form-group">
       <input type="text" class="form-control" name="" id="generator_id" placeholder="Unique Key" readonly>
