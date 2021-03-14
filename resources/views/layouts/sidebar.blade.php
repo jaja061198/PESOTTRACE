@@ -65,7 +65,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('generate.attendance.index') }}" class="nav-link {{ (Route::current()->getName() == 'generate.attendance.index' ? 'active' : '') }}">
               <i class="nav-icon fas fa-history"></i>
               <p>
                 Generate Attendance

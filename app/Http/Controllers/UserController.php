@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User as UserModel;
 class UserController extends Controller
 {
@@ -24,6 +27,8 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        // return Excel::download(new UserCollection,'users.xlsx');
         return view('app_manager.user')
         ->with('users',UserModel::all());
     }

@@ -133,4 +133,11 @@ Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/populateclass/delete', 'PopulateClassController@delete')->name('populate.class.setup.delete');
 
+
+	//GENERATE ATTENDANCE
+
+	Route::get('/generateAttendance', 'GenerateAttendanceController@index')->name('generate.attendance.index');
+
+	Route::post('/generateAttendance/insert', 'GenerateAttendanceController@generate')->name('generate.attendance.post');
+
 });
