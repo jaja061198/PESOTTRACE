@@ -9,7 +9,6 @@ use App\Student;
 class AttendanceLog extends Model
 {
     //
-
     public function getClass()
     {
         return $this->hasOne(new ClassSetup,'id','class_id')->with('getSection')->with('getGrade');
