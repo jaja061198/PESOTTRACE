@@ -117,7 +117,6 @@ Route::group(['middleware' => 'auth'] , function() {
 
 	Route::post('/scan/timein', 'ScanController@timeIn')->name('scan.insert');
 
-
 	//POPULATE CLASSES
 	
 

@@ -24,7 +24,6 @@ class GenerateAttendanceController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
